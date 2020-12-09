@@ -1,0 +1,92 @@
+step1===
+
+public class MILK_SUBMIT extends javax.swing.JFrame {
+    public Connection conn=null;
+    
+    public Connection getConn()//----------------------------------------create method
+        {
+        
+        try {
+            Class.forName("org.postgresql.Driver");
+            JOptionPane.showMessageDialog(null,"Driver loaded");
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null,"ClassNotFoundException");
+            Logger.getLogger(MILK_SUBMIT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      try {
+        String url="jdbc:postgresql://localhost/postgres";
+        String user="postgres";
+        String password="shubhampwr";
+        
+        
+            conn=DriverManager.getConnection(url, user, password);
+            JOptionPane.showMessageDialog(null,"connect");
+        } catch (SQLException ex) {
+            Logger.getLogger(MILK_SUBMIT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return conn;
+        
+    }
+    
+  ----------------------------------------------------------------------------------------------------- 
+
+    
+    public Constructor() {
+        initComponents();
+        getConn();---------------------------add method
+    }
+
+
+    
+    ------------------------------------------------------------------
+
+try {
+            String query="INSERT INTO public.\"Milk_Submit\"(\n" +
+"	\"USER_ID\", \"FAT\", \"LITER\", \"Rupees\")\n" +
+"	VALUES (?, ?, ?, ?);";
+        PreparedStatement pst;
+            pst = conn.prepareStatement(query);
+             pst.setInt(1,Integer.valueOf(t3.getText()));
+             pst.setInt(2,Integer.valueOf(t4.getText()));
+             pst.setInt(3,Integer.valueOf(t5.getText()));
+             pst.setInt(4,Integer.valueOf(t6.getText()));
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(null,"Record Inserted");
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null,"Record not Inserted"+ex);
+            
+            Logger.getLogger(MILK_SUBMIT.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+       
+        
+        
+        
+    }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* psmt.setInt(1,Integer.valueOf(t1.getText()));
+            psmt.setString(2,String.valueOf(t2.getText()));
+            psmt.setString(3,String.valueOf(t3.getText()));
+            psmt.setString(4,String.valueOf(t4.getText()));
+            psmt.setString(5,String.valueOf(t5.getText()));
+            psmt.setString(6,String.valueOf(tf1.getText()));
+            
+            
+            psmt.executeUpdate();

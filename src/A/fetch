@@ -1,0 +1,23 @@
+ public void fetch()
+    {
+        try
+        {
+public ResultSet rs=null;
+    PreparedStatement pst=null; 
+
+QUERY=
+        String q="SELECT \"Date\", \"C_No\", \"Liter\", \"Rate\", \"Rupees\"\n" +
+"	FROM public.\"Milk_Sell\";";
+
+CONN
+        pst=conn.prepareStatement(q);
+
+EXCUTE
+        rs=pst.executeQuery();
+
+ADD ON TABLE
+       jtb1.setModel(DbUtils.resultSetToTableModel(rs));
+
+
+        }catch(Exception e){JOptionPane.showMessageDialog(null,e);};
+    }
